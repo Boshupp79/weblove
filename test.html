@@ -567,6 +567,219 @@
                 font-size: 0.8em;
             }
         }
+
+        .love-letter {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: rotate(-2deg);
+        }
+        
+        .love-letter:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 20px;
+            color: #ff6b6b;
+            opacity: 0.7;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            color: #d63384;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .letter-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            color: #d63384;
+        }
+        
+        .poem-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .poem-container.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .poem {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.3);
+            text-align: center;
+            color: white;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .poem-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .poem-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3em;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+        
+        .poem-verse {
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInVerse 0.8s ease-out forwards;
+        }
+        
+        .poem-verse:nth-child(2) { animation-delay: 0.2s; }
+        .poem-verse:nth-child(3) { animation-delay: 0.4s; }
+        .poem-verse:nth-child(4) { animation-delay: 0.6s; }
+        .poem-verse:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInVerse {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2em;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            opacity: 1;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 3s ease-out forwards;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0.5);
+            }
+        }
+        
+        .click-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(214, 51, 132, 0.1);
+            color: #d63384;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -574,7 +787,7 @@
     
     <div class="container">
         <header>
-            <h1 class="title">Un Jardin de Mots pour Toi 🌸</h1>
+            <h1 class="title">>Un Jardin de Mots pour Toi 🌸</h1>
             <p class="subtitle">Quelques pensées qui traversent l'esprit...</p>
             <div class="music-note" style="top: 20px; left: 10%;">♪</div>
             <div class="music-note" style="top: 40px; right: 15%;">♫</div>
@@ -669,10 +882,8 @@
                 <div id="memoryReward" class="hidden-message">
                     <div class="poetry-section">
                         <h3 style="color: #e74c3c; margin-bottom: 20px;">🏆 Bravo ! Voici ta récompense :</h3>
-                        <p>"Il y a des mots qu'on n'ose pas dire,<br>
-                        des sentiments qu'on préfère suggérer,<br>
-                        mais si tu lis entre les lignes de ce site,<br>
-                        tu trouveras tout ce que mon cœur voudrait exprimer."</p>
+                        <p>"Dans le jardin secret de mes pensées,<br>
+                        ton sourire est la plus belle des fleurs."</p>
                     </div>
                 </div>
             </div>
@@ -723,12 +934,88 @@
                 <div id="wordReward" class="hidden-message">
                     <div class="poetry-section">
                         <h3 style="color: #e74c3c; margin-bottom: 20px;">🎉 Parfait ! Voici ton cadeau :</h3>
-                        <p>"Dans le jardin secret de mes pensées,<br>
-                        ton sourire est la plus belle des fleurs."</p>
+                        <p>"Il y a des mots qu'on n'ose pas dire,<br>
+                        des sentiments qu'on préfère suggérer,<br>
+                        mais si tu lis entre les lignes de ce site,<br>
+                        tu trouveras tout ce que mon cœur voudrait exprimer."</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="love-letter" id="loveLetter">
+        <div class="hearts">💕 💖 💕</div>
+        
+        <div class="header">
+            <h1 class="title"> Des mots sentimentals</h1>
+            <p class="subtitle">Une lettre pour toi</p>
+        </div>
+        
+        <div class="letter-content">
+            <p>Ma chère,</p>
+            <br>
+            <p>Je ne sais pas vraiment par où commencer, alors je vais simplement suivre ce que je ressens.</p>
+            <br>
+            <p>Il y a quelque chose chez toi… quelque chose que je n’arrive pas à nommer, mais que je ressens à chaque fois qu’on parle
+                , ou même quand je pense à toi sans raison particulière. 
+                Ce n’est pas un grand frisson, ni un feu d’artifice. C’est plus discret, plus profond. Comme une évidence tranquille.</p>
+            <br>
+            <p>Je ne te connais pas encore totalement, mais ce que je découvre me plaît. 
+                Ton rire, tes silences, ta façon de t'exprimer — tout semble sonner juste. 
+                Tu n’as pas besoin d’en faire trop, tu es déjà fascinante sans le vouloir.</p>
+            <br>
+            <p>Je ne cherche pas à te séduire avec de grands mots ou des promesses en l’air. 
+                Je préfère te laisser entrevoir, au fil du temps, ce que j’ai envie de partager avec toi. 
+                Une complicité douce, des fous rires imprévus, des silences qui apaisent… et peut-être plus, si le cœur s’en mêle..</p>
+        </div>
+        
+        <div class="signature">
+            Ton plus grand charmeur
+            <br>
+        </div>
+        
+        <div class="click-hint">✨ Clique pour révéler le poème ✨</div>
+    </div>
+    
+    <div class="poem-container" id="poemContainer">
+        <div class="poem">
+            <button class="close-btn" onclick="closePoem()">&times;</button>
+            
+            <h2 class="poem-title">Je pense à toi</h2>
+            
+            <div class="poem-text">
+                <div class="poem-verse">
+                    Trois notes de musique, je pense à toi,<br>
+                    Chanter à tue-tête sur tous les toits,<br>
+                    Ce que je ressens résonne en moi.
+
+                </div>
+                
+                <div class="poem-verse">
+                    Nous sommes séparés par la distance, <br>
+                    Pourtant, même à l'autre bout de la France <br>
+                    Un rien me ramène à toi. 
+
+                </div>
+                
+                <div class="poem-verse">
+                    L'histoire a débuté par "il était une fois", <br>
+                    Et j'aimerai qu'elle s'écrive sans fin, <br>
+                    Comme un refrain qui jamais ne s'efface, <br>
+                    Jusqu'à "ils vécurent heureux" en écho à nos voix. 
+                </div>
+                
+                <div class="poem-verse">
+                    Chaque message, chaque silence, chaque regard, <br>
+                    Gravent en moi ce lien, rare et bizarre, <br>
+                    Une évidence douce, loin du hasard
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-hearts" id="floatingHearts"></div>
 
         <div class="section">
             <div class="poetry-section">
@@ -975,6 +1262,58 @@
         // Optimiser au chargement et au redimensionnement
         window.addEventListener('load', optimizeForMobile);
         window.addEventListener('resize', optimizeForMobile);
+
+        const loveLetter = document.getElementById('loveLetter');
+        const poemContainer = document.getElementById('poemContainer');
+        const floatingHearts = document.getElementById('floatingHearts');
+        
+        function createFloatingHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '💕';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.left = (x - 10) + 'px';
+            floatingHearts.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        
+        loveLetter.addEventListener('click', function(e) {
+            // Créer des cœurs flottants
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const x = e.clientX + (Math.random() - 0.5) * 100;
+                    const y = e.clientY + (Math.random() - 0.5) * 100;
+                    createFloatingHeart(x, y);
+                }, i * 100);
+            }
+            
+            // Afficher le poème après un court délai
+            setTimeout(() => {
+                poemContainer.classList.add('show');
+            }, 400);
+        });
+        
+        function closePoem() {
+            poemContainer.classList.remove('show');
+        }
+        
+        // Fermer avec la touche Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePoem();
+            }
+        });
+        
+        // Fermer en cliquant en dehors du poème
+        poemContainer.addEventListener('click', function(e) {
+            if (e.target === poemContainer) {
+                closePoem();
+            }
+        });
     </script>
 </body>
 </html>

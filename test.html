@@ -17,6 +17,48 @@
             <div class="music-note" style="top: 40px; right: 15%;">♫</div>
         </header>
 
+        <div class="birthday-container" id="birthdayContainer">
+            <button class="birthday-trigger" onclick="startBirthdayAnimation()">
+                🎂 Clique pour une surprise ! 🎉
+            </button>
+            
+            <div class="birthday-animation" id="birthdayAnimation">
+                <div class="birthday-content">
+                    <h1 class="birthday-title">Joyeux Anniversaire !</h1>
+                    
+                    <div class="cake-container">
+                        <div class="cake">
+                            <div class="candle">
+                                <div class="flame"></div>
+                            </div>
+                            <div class="cake-layer layer-3"></div>
+                            <div class="cake-layer layer-2"></div>
+                            <div class="cake-layer layer-1"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="birthday-message">Souffle les bougies pour découvrir ton message !</p>
+                    <button class="blow-btn" onclick="blowCandles()">💨 Souffler</button>
+                    
+                    <div class="birthday-wish" id="birthdayWish">
+                        <div class="wish-text">
+                            <p style="font-size: 1.5em; margin-bottom: 20px;">✨ Que ta journée soit remplie ✨</p>
+                            <p>De rires qui illuminent tes journées,<br>
+                            De moments magiques partagés,<br>
+                            De rêves qui se réalisent,<br>
+                            Et de bonheur à chaque instant.</p>
+                            <p style="margin-top: 20px; font-size: 1.2em; color: #e91e63;">
+                                Parce que tu mérites tout le meilleur 💖
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="confetti-container" id="confettiContainer"></div>
+                <button class="close-birthday" onclick="closeBirthday()">&times;</button>
+            </div>
+        </div>
+
         <div class="section">
             <div class="poetry-section">
                 <p>"Il y a des sourires qui illuminent une journée entière,<br>
@@ -1043,6 +1085,78 @@
                 combo = Math.max(0, combo - 1);
             }
         }, 3000);
+
+        function startBirthdayAnimation() {
+    const animation = document.getElementById('birthdayAnimation');
+    animation.classList.add('show');
+    createBalloons();
+}
+
+function blowCandles() {
+    const flame = document.querySelector('.flame');
+    const candle = document.querySelector('.candle');
+    const wish = document.getElementById('birthdayWish');
+    const blowBtn = document.querySelector('.blow-btn');
+    
+    // Éteindre la flamme
+    flame.style.animation = 'flameOut 0.5s ease-out forwards';
+    
+    setTimeout(() => {
+        flame.style.display = 'none';
+        candle.style.background = 'linear-gradient(to bottom, #666, #333)';
+        blowBtn.style.display = 'none';
+        wish.style.display = 'block';
+        createConfetti();
+    }, 500);
+}
+
+function createConfetti() {
+    const container = document.getElementById('confettiContainer');
+    const colors = ['#ff6b9d', '#c44569', '#ffeaa7', '#fdcb6e', '#a29bfe', '#6c5ce7', '#00b894', '#00cec9'];
+    
+    for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+    }
+}
+
+function createBalloons() {
+    const colors = ['🎈', '🎉', '🎊', '✨'];
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            const balloon = document.createElement('div');
+            balloon.className = 'floating-heart';
+            balloon.innerHTML = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * window.innerWidth + 'px';
+            balloon.style.fontSize = (20 + Math.random() * 20) + 'px';
+            document.body.appendChild(balloon);
+            
+            setTimeout(() => balloon.remove(), 3000);
+        }, i * 100);
+    }
+}
+
+function closeBirthday() {
+    document.getElementById('birthdayAnimation').classList.remove('show');
+    document.getElementById('confettiContainer').innerHTML = '';
+    
+    // Réinitialiser pour rejouer
+    setTimeout(() => {
+        document.querySelector('.flame').style.display = 'block';
+        document.querySelector('.flame').style.animation = 'flameFlicker 0.3s infinite alternate';
+        document.querySelector('.candle').style.background = 'linear-gradient(to bottom, #fff, #f0f0f0)';
+        document.querySelector('.blow-btn').style.display = 'inline-block';
+        document.getElementById('birthdayWish').style.display = 'none';
+    }, 500);
+}
     </script>
 </body>
 </html>
